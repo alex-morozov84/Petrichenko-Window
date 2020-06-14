@@ -1,4 +1,4 @@
-const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = "block") => {
    
     const tabsWrapper = document.querySelector(headerSelector),
         tabs = document.querySelectorAll(tabSelector),
@@ -15,7 +15,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
         }
 
         function showTabs(i = 0) {
-            content[i].style.display = 'block';
+            content[i].style.display = display;
             content[i].classList.add('fadeIn');
             tabs[i].classList.add(activeClass);
         }
