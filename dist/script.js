@@ -17837,6 +17837,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _checkNumInputs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkNumInputs */ "./src/js/modules/checkNumInputs.js");
 
+// Функция по записи в объект всех данных, введенных в форму. Затем эти данные передаются в файл main.js. А потом отправляются с формой
 // импортируем функцию по проверке на ввод чисел
 
 
@@ -17928,6 +17929,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Функция по проверке формы на ввод чисел (запрещает вводить что-либо кроме чисел)
 var checkNumInputs = function checkNumInputs(selector) {
   var numInputs = document.querySelectorAll(selector);
   numInputs.forEach(function (item) {

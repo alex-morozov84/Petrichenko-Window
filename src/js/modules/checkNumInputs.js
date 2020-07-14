@@ -1,3 +1,5 @@
+// Функция по проверке формы на ввод чисел (запрещает вводить что-либо кроме чисел)
+
 const checkNumInputs = (selector) => {
 
     const numInputs = document.querySelectorAll(selector);

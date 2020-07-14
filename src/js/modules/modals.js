@@ -17,86 +17,86 @@ const modals = () => {
         windows = document.querySelectorAll('[data-modal]');
         
 
-    const messages = {
-        width: "Введите ширину",
-        height: "Введите высоту",
-        profile: "Выберите тип остекления"
-    };
+        const messages = {
+            width: "Введите ширину",
+            height: "Введите высоту",
+            profile: "Выберите тип остекления"
+        };
 
-    // Вывод предупреждений, если поле путое
-    function warningMessage(window, message) {
-        // если предупреждение уже было, то удаляется (чтоб не было нескольких)
-        if (document.querySelector('.status')) {
-            document.querySelector('.status').remove();
-        }
-        const messageElem = document.createElement('div');
-        messageElem.classList.add('status');
-        document.querySelector(window).appendChild(messageElem);
-        messageElem.textContent = message;
-    }
-
-    // Функция закрытия всех модальных окон (их может быть несколько)
-    function closeAllModals() {
-        windows.forEach(item => {
-            item.style.display = "none";
-        });
-    }
-    
-    trigger.forEach(item => {
-        item.addEventListener('click', (e) => {
-            if (e.target) {
-                    e.preventDefault();
-                }
-            // Проверка на пустые поля
-            if (e.target.classList.contains('popup_calc_button')) {
-                if (document.querySelector('#width').value == "") {
-                    warningMessage('.popup_calc_content', messages.width);
-                } else if (document.querySelector('#height').value == "") {
-                    warningMessage('.popup_calc_content', messages.height);
-                } else {
-                    closeAllModals();
-                    openModal(modal);
-                }
-            } else if (e.target.classList.contains('popup_calc_profile_button')) {
-                
-                if (document.querySelectorAll('.checkbox')[0].checked === false && document.querySelectorAll('.checkbox')[1].checked === false) {
-                    warningMessage('.popup_calc_profile_content', messages.profile);
-                } else {
-                    closeAllModals();
-                    openModal(modal);
-                }
-            } else {
-                // Закрываем все ранее открытые окна (если были открыты)
-                closeAllModals();
-                openModal(modal);
+        // Вывод предупреждений, если поле путое
+        function warningMessage(window, message) {
+            // если предупреждение уже было, то удаляется (чтоб не было нескольких)
+            if (document.querySelector('.status')) {
+                document.querySelector('.status').remove();
             }
+            const messageElem = document.createElement('div');
+            messageElem.classList.add('status');
+            document.querySelector(window).appendChild(messageElem);
+            messageElem.textContent = message;
+        }
+
+        // Функция закрытия всех модальных окон (их может быть несколько)
+        function closeAllModals() {
+            windows.forEach(item => {
+                item.style.display = "none";
+            });
+        }
+        
+        trigger.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target) {
+                        e.preventDefault();
+                    }
+                // Проверка на пустые поля
+                if (e.target.classList.contains('popup_calc_button')) {
+                    if (document.querySelector('#width').value == "") {
+                        warningMessage('.popup_calc_content', messages.width);
+                    } else if (document.querySelector('#height').value == "") {
+                        warningMessage('.popup_calc_content', messages.height);
+                    } else {
+                        closeAllModals();
+                        openModal(modal);
+                    }
+                } else if (e.target.classList.contains('popup_calc_profile_button')) {
+                    
+                    if (document.querySelectorAll('.checkbox')[0].checked === false && document.querySelectorAll('.checkbox')[1].checked === false) {
+                        warningMessage('.popup_calc_profile_content', messages.profile);
+                    } else {
+                        closeAllModals();
+                        openModal(modal);
+                    }
+                } else {
+                    // Закрываем все ранее открытые окна (если были открыты)
+                    closeAllModals();
+                    openModal(modal);
+                }
+            });
         });
-    });
 
-    function closeModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-        document.body.style.marginRight = `0px`;
-    }
-    // закрытие при клике на крестик
-    close.forEach(item => {
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            document.body.style.marginRight = `0px`;
+        }
+        // закрытие при клике на крестик
+        close.forEach(item => {
 
-        // Закрываем ВСЕ открытые окна (их может быть несколько)
-        closeAllModals();
-
-        item.addEventListener('click', () => {
-            closeModal();
-        });
-    });
-    // закрытие при клике вне окна
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal && closeClickOverlay) {
-
+            // Закрываем ВСЕ открытые окна (их может быть несколько)
             closeAllModals();
 
-            closeModal();
-        }
-    });
+            item.addEventListener('click', () => {
+                closeModal();
+            });
+        });
+        // закрытие при клике вне окна
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal && closeClickOverlay) {
+
+                closeAllModals();
+
+                closeModal();
+            }
+        });
     }
 
     // Определение ширины полосы прокрутки (чтоб избавиться от скачака при отмене прокрутки)
